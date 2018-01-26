@@ -5,20 +5,43 @@ using UnityEngine.UI;
 
 public class Cell : MonoBehaviour
 {
-
+    private int number;
     private Text text;
-    private Image ima;
+    private Image image;
+
+    public int x, y;
+
+    public int getsetNumber
+    {
+        get
+        {
+            return number;
+        }
+        set
+        {
+            number = value;
+            if (number == 0)
+            {
+                setEmpty();
+            }
+            else
+            {
+                applyCell(number);
+                setVisible();
+            }
+        }
+    }
 
     void Awake()
     {
-        text = GetComponentInChildren<Text>();
-        ima = transform.Find("Panel").GetComponent<Image>();
+        text = GetComponentInChildren<Text> ();
+        image = transform.Find("Panel").GetComponent<Image> ();
     }
-
-    void applyColor(int index)
+    
+    void applyCell(int index)
     {
-        //text.text = Color.tit.ele[index].num;
-        ima.color = Color.tit.ele[index].col;
+        text.text = Color.cell.element[index].num.ToString(); //int to string
+        image.color = Color.cell.element[index].color;
     }
 
     void changeType(int num)
@@ -26,43 +49,56 @@ public class Cell : MonoBehaviour
         switch (num)
         {
             case 2:
-                applyColor(2);
+                applyCell (2);
                 break;
             case 4:
-                applyColor(4);
+                applyCell(4);
                 break;
             case 8:
-                applyColor(8);
+                applyCell(8);
                 break;
             case 16:
-                applyColor(16);
+                applyCell(16);
                 break;
             case 32:
-                applyColor(32);
+                applyCell(32);
                 break;
             case 64:
-                applyColor(64);
+                applyCell(64);
                 break;
             case 128:
-                applyColor(128);
+                applyCell(128);
                 break;
             case 256:
-                applyColor(256);
+                applyCell(256);
                 break;
             case 512:
-                applyColor(512);
+                applyCell(512);
                 break;
             case 1024:
-                applyColor(1024);
+                applyCell(1024);
                 break;
             case 2048:
-                applyColor(2048);
+                applyCell(2048);
                 break;
             case 4096:
-                applyColor(4096);
+                applyCell(4096);
                 break;
         }
     }
+
+    private void setVisible()
+    {
+        text.enabled = true;
+        image.enabled = true;
+    }
+
+    private void setEmpty()
+    {
+        text.enabled = false;
+        image.enabled = false;
+    }
+
     // Use this for initialization
     void Start()
     {
